@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.addNewBtn,
+.TaddNewBtn {
+  font-size: larger;
+}
+.Add-new-Div,
+.teachers-Add-new-Div {
+  display: none;
+}
+.Edit-Div,
+.teachers-Edit-Div {
+  display: none;
+}
+.row {
+  margin: 0;
+  padding: 0;
+}
+.studentDataBtn,
+.teachersDataBtn {
+  font-size: x-large;
+}
+.teacherSection {
+  display: none;
+}

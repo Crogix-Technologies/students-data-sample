@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Rahman Karim",
+    "fname": "Arman karim",
+    "email": "rahmankarim2468@gmail.com",
+    "phoneNumber": "03465750452",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 2,
+    "name": "Abdullah Baig",
+    "fname": "Ghulam Sarwar",
+    "email": "prg.abdullah@gmail.com",
+    "phoneNumber": "034567890",
+    "subject": "AI"
+  },
+  {
+    "id": 3,
+    "name": "Shahab ",
+    "fname": "Adil Karim",
+    "email": "shahab2@gmail.com",
+    "phoneNumber": "03465750452",
+    "subject": "Cyber Security"
+  },
+  {
+    "id": 4,
+    "name": "Rahman Karim",
+    "fname": "Adil Karim",
+    "email": "rahmankarim2468@gmail.com",
+    "phoneNumber": "03465750452",
+    "subject": "24234"
+  }
+]

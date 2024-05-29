@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Rahman Karim",
+    "fname": "Arman karim",
+    "email": "rahmankarim2468@gmail.com",
+    "phoneNumber": "03465750452"
+  },
+  {
+    "id": 2,
+    "name": "Abdullah Baig",
+    "fname": "Ghulam Sarwar",
+    "email": "prg.abdullah@gmail.com",
+    "phoneNumber": "123345678654"
+  },
+  {
+    "id": 3,
+    "name": "Shahab Singh",
+    "fname": "Adil Singh",
+    "email": "shahab@gmail.com",
+    "phoneNumber": "03465750452"
+  }
+]
