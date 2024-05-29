@@ -27,9 +27,17 @@ Command: git commit -m "<any_message>"
 
 Command: git branch <branch_name>
 
+# List All Local branches
+
+Command: git branch
+
 # List All Remote branches
 
 Command: git branch -r
+
+# List All Local branches with latest commit hash and message
+
+Command: git branch -v
 
 # List All Remote branches with latest commit hash and message
 

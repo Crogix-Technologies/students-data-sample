@@ -17,6 +17,7 @@ export default class Student {
         }
     }
 
+    ///test comment to check
       //saving data to the json file
   public async postData(std: studentEntity): Promise<any> {
     try {
