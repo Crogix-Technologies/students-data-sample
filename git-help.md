@@ -1,4 +1,4 @@
-## Git source initialization
+ --git ## Git source initialization
 In the root of your project source write the following command to initialize git
 
 Command: git init 
