@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { teacherEntity} from './Entities/entity';
+import { teacherEntity} from './Entities/teacherEntity';
 
 
 const filePath = path.join(__dirname, "teachersData.json");

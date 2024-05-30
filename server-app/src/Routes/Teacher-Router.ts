@@ -1,6 +1,6 @@
 import express from 'express';
 import student from '../../Database/teacher';
-import { teacherEntity } from '../../Database/Entities/entity';
+import { teacherEntity } from '../../Database/Entities/studentEntity';
 
 const teacherRouter = express.Router();
 const teacherObj = new student();
