@@ -27,3 +27,9 @@
 .teacherSection {
   display: none;
 }
+#searchTable {
+  display: none;
+}
+.tableClrBtn {
+  display: none;
+}
