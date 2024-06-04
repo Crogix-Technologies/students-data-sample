@@ -22,17 +22,55 @@
   <body>
     <div class="row">
       <div class="col-lg-2">
-        <header>
-          <div class="container text-center mt-5 mb-5">
-            <h1>Categories</h1>
+        <div class="row">
+          <div class="col-lg-12">
+            <header>
+              <div class="container text-center mt-5 mb-5">
+                <h1>Categories</h1>
+              </div>
+              <div class="container text-center mt-3">
+                <a class="btn btn-success studentDataBtn w-100"
+                  >Student's Data</a
+                >
+                <a class="btn btn-success teachersDataBtn w-100 mt-3"
+                  >Teacher's Data</a
+                >
+              </div>
+            </header>
           </div>
-          <div class="container text-center mt-3">
-            <a class="btn btn-success studentDataBtn w-100">Student's Data</a>
-            <a class="btn btn-success teachersDataBtn w-100 mt-3"
-              >Teacher's Data</a
-            >
+          <div class="col-lg-9">
+            <div class="container mt-5">
+              <input
+                type="search"
+                name="search"
+                id="search"
+                placeholder="Search By Name"
+                class="form-control border-success text-success searchField"
+              />
+            </div>
           </div>
-        </header>
+          <div class="col-lg-3">
+            <a class="btn btn-success mt-5 searchBtn">Search</a>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <table
+            class="table table-hover mt-5 text-center table-bordered table-striped"
+            id="searchTable"
+          >
+            <thead>
+              <tr>
+                <th class="bg-success text-light">ID</th>
+                <th class="bg-success text-light">Name</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="col-lg-12">
+          <div class="mt-3 container text-end tableClrBtn">
+            <a class="btn btn-danger" style="margin-right: 20px">Clear</a>
+          </div>
+        </div>
       </div>
       <div class="col-lg-10">
         <section class="studentsSection">

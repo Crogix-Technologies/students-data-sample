@@ -366,4 +366,96 @@ $(document).ready(function () {
       $(".TaddNewBtn").show();
     });
   });
+  //--------------------------------------------------Added Search Bar
+  //Search Data
+  $(".searchBtn").click(function () {
+    let searchVal = $(".searchField").val();
+    if (!searchVal) {
+      alert("Enter Name in Search");
+      return;
+    }
+    if ($(".studentsSection").css("display") == "block") {
+      $("#searchTable").show();
+      $(".tableClrBtn").show();
+
+      $.ajax({
+        url: `${apiBaseUrl}/students`,
+        method: "GET",
+        success: function (data, status) {
+          if (status !== "success") {
+            alert("Data Get Method Failed in Search Field");
+            return;
+          }
+
+          const studentData = Array.isArray(data.data)
+            ? data.data
+            : [data.data];
+
+          // Filter students by name
+          const reqStudentData = studentData.filter(
+            (student) => student.name === searchVal
+          );
+          if (reqStudentData.length == 0) {
+            alert("There is no Student named: " + searchVal);
+            return;
+          }
+          reqStudentData.forEach((reqStudent) => {
+            const row = `
+                        <tr data-id="${reqStudent.id}">
+                            <td>${reqStudent.id}</td>
+                            <td>${reqStudent.name}</td>
+                        </tr>
+                    `;
+            $("#searchTable").append(row);
+          });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus, errorThrown);
+        },
+      });
+    } else if ($(".teacherSection").css("display") == "block") {
+      $("#searchTable").show();
+      $(".tableClrBtn").show();
+      $.ajax({
+        url: `${apiBaseUrlT}/teachers`,
+        method: "GET",
+        success: function (data, status) {
+          if (status !== "success") {
+            alert("Data Get Method Failed in Search Field");
+            return;
+          }
+
+          const teacherData = Array.isArray(data.data)
+            ? data.data
+            : [data.data];
+
+          // Filter Teacher by name
+          const reqTeacherData = teacherData.filter(
+            (teacher) => teacher.name === searchVal
+          );
+          if (reqTeacherData.length == 0) {
+            alert("There is no Teacher named: " + searchVal);
+            return;
+          }
+          reqTeacherData.forEach((reqTeacher) => {
+            const row = `
+                        <tr data-id="${reqTeacher.id}">
+                            <td>${reqTeacher.id}</td>
+                            <td>${reqTeacher.name}</td>
+                        </tr>
+                    `;
+            $("#searchTable").append(row);
+          });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus, errorThrown);
+        },
+      });
+    }
+  });
+  // Clear search results
+  $(".tableClrBtn").click(function () {
+    $("#searchTable").empty();
+    $(".tableClrBtn").hide();
+  });
 });
