@@ -26,7 +26,23 @@
   {
     "id": 4,
     "name": "Rahman Karim",
-    "fname": "Adil Karim",
+    "fname": "musa Karim",
+    "email": "rahmankarim2468@gmail.com",
+    "phoneNumber": "03465750452",
+    "subject": "digital marketing"
+  },
+  {
+    "id": 5,
+    "name": "Salman Karim",
+    "fname": "husain Karim",
+    "email": "rahmankarim2468@gmail.com",
+    "phoneNumber": "03465750452",
+    "subject": "24234"
+  },
+  {
+    "id": 6,
+    "name": "Akmal Karim",
+    "fname": "ikram Karim",
     "email": "rahmankarim2468@gmail.com",
     "phoneNumber": "03465750452",
     "subject": "24234"
