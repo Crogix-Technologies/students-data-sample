@@ -1,15 +1,15 @@
-import cors from 'cors';
-import express from 'express';
 
-// import bodyParser from 'body-parser';
 import app from "./src/app";
+import mongoose from "mongoose";
 
+const port  = 3000;
 
-const port  = 80;
-
-app.use(cors());
-// app.use(bodyParser.json());
-app.use(express.json());
+//connecting to mongo db
+mongoose.connect('mongodb://localhost:27017/school', {
+    serverSelectionTimeoutMS: 5000
+}).then(() => {
+    console.log("MongoDB connected successfully!");
+});
 
 app.listen(port, ()=>
 {
