@@ -1,7 +1,7 @@
-export interface teacherEntity{
+export interface ITeacher{
     id: number,
     name: string,
-    fname: string,
+    fatherName: string,
     email: string,
     phoneNumber: string,
     subject: string
