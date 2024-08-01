@@ -43,4 +43,4 @@ studentSchema.statics.build = (attr: IStudent) => {
 
 const StudentModel = mongoose.model<any, IStudentModel>('Student', studentSchema);
 
-export { StudentModel };
+export { StudentModel};
