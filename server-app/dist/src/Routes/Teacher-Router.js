@@ -12,16 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.studentRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const student_model_1 = require("../../Database/Models/student-model");
-const studentRouter = express_1.default.Router();
-exports.studentRouter = studentRouter;
+const teacher_model_1 = require("../../Database/Models/teacher-model");
+const teacherRouter = express_1.default.Router();
 // Route to get all students
-studentRouter.get("/students", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+teacherRouter.get("/teachers", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const students = yield student_model_1.StudentModel.find({});
-        res.status(200).send(students);
+        const teacher = yield teacher_model_1.TeacherModel.find({});
+        res.status(200).send(teacher);
     }
     catch (err) {
         console.error("Error getting students:", err);
@@ -32,12 +30,12 @@ studentRouter.get("/students", (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 }));
 //Saving a student Data POST Method
-studentRouter.post("/student", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+teacherRouter.post("/teacher", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { rollNumber, name, fatherName, email, phoneNumber } = req.body;
-        const studentModel = student_model_1.StudentModel.build({ rollNumber, name, fatherName, email, phoneNumber });
-        yield studentModel.save();
-        res.status(201).send(studentModel);
+        const { id, name, fatherName, email, phoneNumber, subject } = req.body;
+        const teacherModel = teacher_model_1.TeacherModel.build({ id, name, fatherName, email, phoneNumber, subject });
+        yield teacherModel.save();
+        res.status(201).send(teacherModel);
     }
     catch (err) {
         console.error("Error creating student:", err);
@@ -48,19 +46,20 @@ studentRouter.post("/student", (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 }));
 // updating student data Put Method
-studentRouter.put("/student", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+teacherRouter.put("/teacher", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { rollNumber, name, fatherName, email, phoneNumber } = req.body;
-        const filter = { rollNumber: parseInt(rollNumber) };
+        const { id, name, fatherName, email, phoneNumber, subject } = req.body;
+        const filter = { id: parseInt(id) };
         const studentUpate = {
-            rollNumber: rollNumber,
+            id: id,
             name: name,
             fatherName: fatherName,
             email: email,
-            phoneNumber: phoneNumber
+            phoneNumber: phoneNumber,
+            subject: subject
         };
-        const studentModel = student_model_1.StudentModel.findOneAndUpdate(filter, studentUpate);
-        res.status(201).send(studentModel);
+        const teacherModel = teacher_model_1.TeacherModel.findOneAndUpdate(filter, studentUpate);
+        res.status(201).send(teacherModel);
     }
     catch (err) {
         console.error("Error in updating student:", err);
@@ -71,10 +70,10 @@ studentRouter.put("/student", (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
 }));
 //Deleting student data
-studentRouter.delete("/student/:rollNumber", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+teacherRouter.delete("/teacher/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const rollNumber = parseInt(req.params.rollNumber);
-        const deletedCount = yield student_model_1.StudentModel.deleteOne({ rollNumber: rollNumber });
+        const id = parseInt(req.params.id);
+        const deletedCount = yield teacher_model_1.TeacherModel.deleteOne({ id: id });
         res.status(201).send({
             deletedCount: deletedCount
         });
@@ -87,3 +86,4 @@ studentRouter.delete("/student/:rollNumber", (req, res) => __awaiter(void 0, voi
         });
     }
 }));
+exports.default = teacherRouter;

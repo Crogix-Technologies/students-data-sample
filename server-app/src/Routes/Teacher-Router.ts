@@ -1,63 +1,96 @@
 import express from 'express';
-import student from '../../Database/teacher';
-import { teacherEntity } from '../../Database/Interfaces/teacherEntity';
+import { TeacherModel } from "../../Database/Models/teacher-model";
+import { ITeacher } from '../../Database/Interfaces/ITeacher';
 
 const teacherRouter = express.Router();
-const teacherObj = new student();
 
 // Route to get all students
 teacherRouter.get("/teachers", async (req, res) => {
     try {
-        const teacherData = await teacherObj.getAll()
-        res.send({
-            status: 200,
-            message: "Success",
-            data: teacherData,
-        });
-    } catch (err: any) {
-        console.error("Error fetching teacher data:", err);
-        res.send({
-            status: 500,
-            message: "Something went wrong on the server.",
-            error: err.message,
-            data: null,
+      const teacher = await TeacherModel.find({});
+      res.status(200).send(teacher);
+    }
+     catch (err) {
+      console.error("Error getting students:", err);
+      res.send({
+          status: 500,
+          message: "Something went wrong on the server."
         });
     }
 });
+
+
 //Saving a student Data POST Method
 teacherRouter.post("/teacher", async ( req, res) => {
   try {
-
-    const {id, name, fname, email, phoneNumber, subject } = req.body;
-    let std: teacherEntity = {
-      id: id,
-      name: name,
-      fname: fname,
-      email: email,
-      phoneNumber: phoneNumber,
-      subject: subject
-    }
-
-
-    const result = await teacherObj.postData(std);
-    res.status(201).send(result);
-  } catch (err) {
-    console.error("Error posting teacher data:", err);
-    res.status(500).send("Error processing request");
-  }
+    const {id, name, fatherName, email, phoneNumber, subject } = req.body;
+    const teacherModel = TeacherModel.build({id, name, fatherName, email, phoneNumber, subject});
+    await teacherModel.save();
+    res.status(201).send(teacherModel);
+} 
+catch (err) {
+    console.error("Error creating student:", err);
+    res.send({
+      status: 500,
+      message: "Something went wrong on the server."
+    });
+}
 });
+
+
+
+// updating student data Put Method
+teacherRouter.put("/teacher",async (req ,res) =>
+  {
+    try {
+      const {id, name, fatherName, email, phoneNumber, subject } = req.body;
+      const filter = {id: parseInt(id)};
+      const teacherUpate: ITeacher = {
+        id: id,
+        name: name,
+        fatherName: fatherName,
+        email: email,
+        phoneNumber: phoneNumber,
+        subject: subject
+      };
+      const teacherModel = await TeacherModel.findOneAndUpdate(filter, teacherUpate, { new: true });
+
+      if (!teacherModel) {
+        return res.status(404).send({ message: "Student not found" });
+      }
+
+      
+      res.status(200).send(teacherModel);
+  } 
+  catch (err) {
+      console.error("Error in updating student:", err);
+      res.send({
+        status: 500,
+        message: "Something went wrong on the server."
+      });
+  }
+  });
 
 //Deleting student data
 teacherRouter.delete("/teacher/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  teacherObj.deleteData(id);
+  try{
+    const id = req.params.id;
+    const deletedCount = await TeacherModel.deleteOne({id: id});
+    res.status(201).send(
+      {
+        deletedCount: deletedCount
+      });
+  }
+  catch (err) {
+        console.error(`Error in deleting student:`, err);
+        res.send({
+          status: 500,
+          message: "Something went wrong on the server."
+        });
+    }
+
+
 });
 
-teacherRouter.put("/teacher/:id",async (req ,res)=>
-{
-  const id = parseInt(req.params.id, 10);
-  const allTeacherData = req.body;
-  teacherObj.putData(id, allTeacherData);
-});
 
 export default teacherRouter;

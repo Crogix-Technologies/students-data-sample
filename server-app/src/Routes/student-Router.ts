@@ -1,6 +1,7 @@
 import express from 'express';
 import { StudentModel } from "../../Database/Models/student-model";
 import { IStudent } from '../../Database/Interfaces/IStudent';
+import { json } from 'body-parser';
 
 const studentRouter = express.Router();
 
@@ -8,7 +9,6 @@ const studentRouter = express.Router();
 studentRouter.get("/students", async (req, res) => {
     try {
         const students = await StudentModel.find({});
-        console.log(students);
         res.status(200).send(students);
     } 
     catch (err) {
@@ -38,34 +38,39 @@ studentRouter.post("/student", async ( req, res) => {
 });
 
 // updating student data Put Method
-studentRouter.put("/student",async (req ,res) =>
-  {
-    try {
-      const {rollNumber, name, fatherName, email, phoneNumber } = req.body;
-      const filter = {rollNumber: parseInt(rollNumber)};
-      const studentUpate: IStudent = {
-        rollNumber: rollNumber,
-        name: name,
-        fatherName: fatherName,
-        email: email,
-        phoneNumber: phoneNumber
-      };
-      const studentModel = StudentModel.findOneAndUpdate(filter, studentUpate);
-      res.status(201).send(studentModel);
-  } 
-  catch (err) {
-      console.error("Error in updating student:", err);
-      res.send({
-        status: 500,
-        message: "Something went wrong on the server."
-      });
+studentRouter.put("/student", async (req, res) => {
+  try {
+    const { rollNumber, name, fatherName, email, phoneNumber } = req.body;
+
+    if (!rollNumber || isNaN(rollNumber)) {
+      return res.status(400).send({ message: "Invalid roll number" });
+    }
+
+    const filter = { rollNumber: parseInt(rollNumber, 10) }; // Ensure rollNumber is parsed correctly
+    const studentUpdate = {
+      name,
+      fatherName,
+      email,
+      phoneNumber
+    };
+
+    const studentModel = await StudentModel.findOneAndUpdate(filter, studentUpdate, { new: true });
+
+    if (!studentModel) {
+      return res.status(404).send({ message: "Student not found" });
+    }
+
+    res.status(200).send(studentModel);
+  } catch (err) {
+    console.error("Error in updating student:", err);
+    res.status(500).send({ message: "Something went wrong on the server." });
   }
-  });
+});
 
 //Deleting student data
 studentRouter.delete("/student/:rollNumber", async (req, res) => {
   try{
-    const rollNumber = parseInt(req.params.rollNumber);
+    const rollNumber = req.params.rollNumber;
     const deletedCount = await StudentModel.deleteOne({rollNumber: rollNumber});
     res.status(201).send(
       {
