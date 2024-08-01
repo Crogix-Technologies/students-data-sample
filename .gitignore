@@ -1,6 +1,9 @@
 #Ingnore npm packages#
 node_modules/
 
+#ignore distribution
+dist/
+
 # Compiled source #
 ###################
 *.com
