@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction} from 'express';
 import { teacherServices } from '../../Services/teacher-service';
 import { ITeacher } from '../../Database/Interfaces/ITeacher';
+import { StatusCodes } from '../@Types/status-codes';
 
 class TeacherControlller 
 {
@@ -9,7 +10,7 @@ class TeacherControlller
  {
     try {
         const teachers = await teacherServices.getTeachers();
-        res.status(200).send(teachers);
+        res.status(StatusCodes.OK).send(teachers);
 
     } catch (error) {
         return next(error)
@@ -21,7 +22,7 @@ class TeacherControlller
     try {
         const teacher = req.body as ITeacher;
         const teachers = await teacherServices.createTeacher(teacher);
-        res.status(200).send(teachers);
+        res.status(StatusCodes.OK).send(teachers);
 
     } catch (error) {
         return next(error)
@@ -33,7 +34,7 @@ class TeacherControlller
     try {
         const teacherReq = req.body as ITeacher;
         const teacher = await teacherServices.updateTeacher(teacherReq);
-        res.status(200).send(teacher);
+        res.status(StatusCodes.OK).send(teacher);
 
     } catch (error) {
         return next(error)
@@ -45,7 +46,7 @@ class TeacherControlller
     try {
         var id = parseInt(req.params.id);
         const teacherDel = await teacherServices.deleteTeacher(id);
-        res.status(200).send(teacherDel);
+        res.status(StatusCodes.OK).send(teacherDel);
 
     } catch (error) {
         return next(error)
