@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser, { BodyParser } from "body-parser";
 import cors from 'cors';
-import { studentRouter } from './Routes/student-Router';
+import {studentRouter } from './Routes/student-Router';
 import {teacherRouter} from './Routes/Teacher-Router';
 
 

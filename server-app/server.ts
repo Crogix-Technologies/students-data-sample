@@ -13,6 +13,6 @@ mongoose.connect('mongodb://localhost:27017/school', {
 
 app.listen(port, ()=>
 {
-    console.log(`Server is Running on Port: http://locolhost:${port}/`)
+    console.log(`Server is Running on Port: http://locolhost:${port}/`);
 });
 
