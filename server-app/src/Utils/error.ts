@@ -1,5 +1,6 @@
 
 export class CustomError extends Error {
+    
     private statusCode: number;
     // private errorType: ErrorType;
     // private errors: string[] | null;

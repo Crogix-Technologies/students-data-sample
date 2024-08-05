@@ -2,7 +2,7 @@ import { Request, Response, NextFunction} from 'express';
 import { studentService } from '../../Services/student-service';
 import { IStudent } from '../../Database/Interfaces/IStudent';
 import { CustomError } from '../Utils/error';
-import { StatusCodes } from '../@Types/status-codes';
+import { StatusCodes } from '../../@Types/status-codes';
 
 class StudentController {
     async getStudents(req: Request, res: Response, next: NextFunction) {

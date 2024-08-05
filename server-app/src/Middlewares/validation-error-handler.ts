@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
 import { requestValidators } from "../RequestValidators";
 import { CustomError } from "../Utils/error";
-import { StatusCodes } from "../@Types/status-codes";
-import { TypeOfKeys } from "../@Types/custom-types"
+import { StatusCodes } from "../../@Types/status-codes";
+import { TypeOfKeys } from "../../@Types/custom-types"
 
 
 const supportedMethods = ["post", "put", "patch", "delete"];

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction} from 'express';
 import { teacherServices } from '../../Services/teacher-service';
 import { ITeacher } from '../../Database/Interfaces/ITeacher';
-import { StatusCodes } from '../@Types/status-codes';
+import { StatusCodes } from '../../@Types/status-codes';
 
 class TeacherControlller 
 {

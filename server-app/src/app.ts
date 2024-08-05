@@ -4,7 +4,7 @@ import cors from 'cors';
 import {studentRouter } from './Routes/student-Router';
 import {teacherRouter} from './Routes/Teacher-Router';
 import { CustomError } from './Utils/error';
-import { StatusCodes } from './@Types/status-codes';
+import { StatusCodes } from '../@Types/status-codes';
 import { errorHandler } from './Middlewares/error-handler';
 
 
