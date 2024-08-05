@@ -14,12 +14,12 @@
     "@types/joi": "^17.2.3",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20.14.2",
+    "@types/winston": "^2.4.4",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@types/winston": "^2.4.4",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
