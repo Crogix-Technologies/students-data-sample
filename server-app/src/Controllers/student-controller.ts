@@ -7,8 +7,6 @@ import { StatusCodes } from '../../@Types/status-codes';
 class StudentController {
     async getStudents(req: Request, res: Response, next: NextFunction) {
         try {
-            throw new Error("this is a test system error");
-            
             const students = await studentService.getStudents();
             res.status(StatusCodes.OK).send(students);
         } catch (error) {

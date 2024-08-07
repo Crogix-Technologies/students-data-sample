@@ -2,10 +2,10 @@ import { StudentModel } from "../Database/Models/student-model";
 import { IStudent } from '../Database/Interfaces/IStudent';
 
 class StudentService {
-    async getStudents() {
+    async getStudents() : Promise<IStudent[]> {
         try {
-            let students = await StudentModel.find({});
-            return students;
+            let students = await StudentModel.find<IStudent>({});
+            return students
         } catch (error) {
             throw error;
         }

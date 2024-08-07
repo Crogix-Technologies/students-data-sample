@@ -2,13 +2,7 @@ import { number, string } from "joi";
 import mongoose from "mongoose";
 import { IStudent } from "../Interfaces/IStudent";
 
-interface StudentDoc extends mongoose.Document{
-    rollNumber: number,
-    name: string,
-    fatherName: string,
-    email: string,
-    phoneNumber: string
-}
+interface StudentDoc extends mongoose.Document<IStudent>{}
 
 interface IStudentModel extends mongoose.Model<StudentDoc>{
     build(attr: IStudent): StudentDoc;
@@ -37,10 +31,12 @@ const studentSchema = new mongoose.Schema({
     },
 });
 
+//injecting build method into model
 studentSchema.statics.build = (attr: IStudent) => {
     return new StudentModel(attr);  
 }
 
-const StudentModel = mongoose.model<any, IStudentModel>('Student', studentSchema);
+const StudentModel = mongoose.model<IStudent, IStudentModel>('Student', studentSchema);
+
 
 export { StudentModel};
