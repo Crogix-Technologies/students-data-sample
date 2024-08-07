@@ -1,8 +1,9 @@
 
 import app from "./src/app";
 import mongoose from "mongoose";
+import { AppConfig } from "./app-config";
 
-const port  = 3000;
+const port  = AppConfig.server_port;
 
 //connecting to mongo db
 mongoose.connect('mongodb://localhost:27017/school', {
